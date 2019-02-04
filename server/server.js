@@ -18,9 +18,9 @@ io.on('connection', (socket) => {
 		console.log('User disconnected');
 	});
 
-	socket.emit('newMessage', generateMessage('admin', 'Welcome to the chat'));
+	socket.emit('newMessage', generateMessage('Admin', 'Welcome to the chat'));
 
-	socket.broadcast.emit('newMessage', generateMessage('admin', 'New user joined'));
+	socket.broadcast.emit('newMessage', generateMessage('Admin', 'New user joined'));
 
 	socket.on('createMessage', (message, callback) => {
 		console.log(message);
@@ -28,8 +28,8 @@ io.on('connection', (socket) => {
 		callback();
 	});
 
-	socket.on('createLocationMessage', (coords, callback) => {
-		io.emit('newLocationMessage', generateLocationMessage('admin', coords.latitude, coords.longitude));
+	socket.on('createLocationMessage', (coords) => {
+		io.emit('newLocationMessage', generateLocationMessage('Admin', coords.latitude, coords.longitude));
 	});
 });
 
